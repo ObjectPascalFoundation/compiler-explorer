@@ -1159,10 +1159,17 @@ const definitions: Record<LanguageKey, LanguageDefinition> = {
 
 export const languages = Object.fromEntries(
     Object.entries(definitions).map(([key, lang]) => {
-        let example: string;
-        try {
-            example = fs.readFileSync(path.join('examples', key, 'default' + lang.extensions[0]), 'utf8');
-        } catch {
+        let example: string | undefined;
+        for (const extension of lang.extensions) {
+            try {
+                example = fs.readFileSync(path.join('examples', key, 'default' + extension), 'utf8');
+                break;
+            } catch (error) {
+                if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+            }
+        }
+
+        if (!example) {
             example = 'Oops, something went wrong and we could not get the default code for this language.';
         }
 

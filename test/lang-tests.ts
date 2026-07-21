@@ -39,7 +39,11 @@ describe('Language definitions tests', () => {
     it('Has examples & are initialized', () => {
         for (const languageKey of Object.keys(languages)) {
             const lang = languages[languageKey];
-            const example = fs.readFileSync(path.join('examples', lang.id, 'default' + lang.extensions[0]), 'utf8');
+            const extension = lang.extensions.find(ext =>
+                fs.existsSync(path.join('examples', lang.id, 'default' + ext)),
+            );
+            if (!extension) throw new Error(`No default example found for ${lang.id}`);
+            const example = fs.readFileSync(path.join('examples', lang.id, 'default' + extension), 'utf8');
             expect(example).toEqual(lang.example);
         }
     });

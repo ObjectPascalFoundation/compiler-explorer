@@ -435,15 +435,15 @@ describe('Pascal', () => {
             compiler = new FPCCompiler(info as unknown as any, ce);
         });
 
-        it('Original behaviour (old unitname)', async () => {
+        it('Writes a program using its declared name', async () => {
             const dirPath = await compiler.newTempDir();
             const files: FiledataPair[] = [];
-            const source = await fs.readFile('examples/pascal/default.pas', 'utf-8');
+            const source = await fs.readFile('examples/pascal/default.dpr', 'utf-8');
 
             const writeSummary = await compiler.writeAllFiles(dirPath, source, files);
 
-            expect(writeSummary.inputFilename).toEqual(path.join(dirPath, 'output.pas'));
-            await expect(utils.fileExists(path.join(dirPath, 'output.pas'))).resolves.toBe(true);
+            expect(writeSummary.inputFilename).toEqual(path.join(dirPath, 'dafult.dpr'));
+            await expect(utils.fileExists(path.join(dirPath, 'dafult.dpr'))).resolves.toBe(true);
             await expect(utils.fileExists(path.join(dirPath, 'prog.dpr'))).resolves.toBe(false); // note: will be written somewhere else
         });
 
@@ -503,16 +503,16 @@ describe('Pascal', () => {
             compiler = new PascalWinCompiler(info as any, ce);
         });
 
-        it('Original behaviour (old unitname)', async () => {
+        it('Writes a program using the Delphi project filename', async () => {
             const dirPath = await compiler.newTempDir();
             const files: FiledataPair[] = [];
-            const source = await fs.readFile('examples/pascal/default.pas', 'utf-8');
+            const source = await fs.readFile('examples/pascal/default.dpr', 'utf-8');
 
             const writeSummary = await compiler.writeAllFiles(dirPath, source, files);
 
-            expect(writeSummary.inputFilename).toEqual(path.join(dirPath, 'output.pas'));
-            await expect(utils.fileExists(path.join(dirPath, 'output.pas'))).resolves.toBe(true);
-            await expect(utils.fileExists(path.join(dirPath, 'prog.dpr'))).resolves.toBe(false); // note: will be written somewhere else
+            expect(writeSummary.inputFilename).toEqual(path.join(dirPath, 'prog.dpr'));
+            await expect(utils.fileExists(path.join(dirPath, 'prog.dpr'))).resolves.toBe(true);
+            await expect(utils.fileExists(path.join(dirPath, 'output.pas'))).resolves.toBe(false);
         });
 
         it('Original behaviour (just a unit file)', async () => {
