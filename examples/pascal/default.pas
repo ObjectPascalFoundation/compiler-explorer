@@ -1,16 +1,11 @@
-unit output;
-
-interface
-
-function Square(const num: Integer): Integer;
-
-implementation
-
-// Type your code here, or load an example.
+program dafult;
 
 function Square(const num: Integer): Integer;
 begin
     Square := num * num;
 end;
 
+begin
+    Writeln('Hello world');
+    Writeln(Square(2));
 end.
