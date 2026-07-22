@@ -765,7 +765,7 @@ const definitions: Record<LanguageKey, LanguageDefinition> = {
         monacoDisassembly: null,
     },
     pascal: {
-        name: 'Pascal',
+        name: 'Object Pascal',
         monaco: 'pascal',
         extensions: ['.pas', '.dpr', '.inc'],
         alias: [],
