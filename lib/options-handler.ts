@@ -25,7 +25,6 @@
 import fs from 'node:fs';
 import http from 'node:http';
 import https from 'node:https';
-import http from 'node:http';
 import path from 'node:path';
 
 import semverParser from 'semver';
