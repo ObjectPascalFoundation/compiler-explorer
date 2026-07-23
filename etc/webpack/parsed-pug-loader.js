@@ -8,8 +8,8 @@ import path from 'path';
 // knowingly edited either policy, contact the CE team. If you have edited the cookies and know that this expected,
 // just update the hash here.
 const expectedHashes = {
-    cookies: '08712179739d3679',
-    privacy: '074dd09a246ad6fe',
+    cookies: '52ddb771048e829d',
+    privacy: 'e12db08e471b5190',
 };
 
 function _execGit(command) {
